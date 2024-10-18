@@ -2,7 +2,7 @@
 
 We are looking at a banking dataset for a Portuguese Bank to see if marketing campaigns would lead to a customer agreeing to open a Term Deposit. We would like to know what Classification Model would work best for this purpose.
 
-We are looking a quite unbalanced dataset where there are very few records with positive classe compared to the negative class.
+We are looking a quite unbalanced dataset where there are very few records with positive class compared to the negative class.
 
 ![App Screenshot](/images/unbalanced.png)
 
@@ -35,7 +35,7 @@ Some of the Models we looked at are
 3. Decision Tree
 4. SVC (Support Vector Classifier)
 
-Without knowing which model would work for this dataset we fit each model with the training dataset to see if any one of them performed better than the other. We ran a GridSearchCV for each model with different parameters to see get the best possible parameter that worked for each model and did a comparison againt other models and their ideal parameters.
+Without knowing which model would work for this dataset we fit each model with the training dataset to see if any one of them performed better than the other. We ran a GridSearchCV for each model with different parameters to get the best possible parameters that worked for each model and did a comparison againt other models and their ideal parameters.
 
 ![App Screenshot](/images/modelComparison.png)
 
@@ -61,7 +61,7 @@ We then predicted the classes for the larger unseen dataset to see what our conf
 
 So in our case, even though oversampling helped with the train/test data set, with the larger unseen data it performed much worse. Maybe, in this case, oversampling isn't the best approach.
 
-### Quick looks at KNN vs. SVC scores to verify our selectoin
+### Quick look at KNN vs. SVC scores to verify our selection
 
 KNN Scores
 ![App Screenshot](/images/knnScores.png)
@@ -75,13 +75,13 @@ I think its safe to say even though precision score with SVC for a positive clas
 
 With KNN being chosen as the model to go with, we can now hand over our model to the subject matter experts to decide the specific around the threshold for the model.
 
-![App Screenshot](/images/knnthresholdScoresScores.png)
+![App Screenshot](/images/thresholdScores.png)
 
 As we see here, our precision goes down as our recall gets higher.
 
 ![App Screenshot](/images/roc.png)
 
-with the ROC (Receiver Operator Curve) plot we can see the percentage of True Positive and it's correspoding False Positive rates. Are we ok with 80% True Positive but having 10% False Positive or would we rather go for 100% True Positive with around 38% False Positives?
+With the ROC (Receiver Operator Curve) plot we can see the percentage of True Positive and it's correspoding False Positive rates. Are we ok with 80% True Positive but having 10% False Positive or would we rather go for 100% True Positive with around 38% False Positives?
 
 This is something the subject matter expert would have to weigh to see what a good compromise is.
 
