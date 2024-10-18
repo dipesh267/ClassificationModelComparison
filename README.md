@@ -59,8 +59,38 @@ We then predicted the classes for the larger unseen dataset to see what our conf
 
 ![App Screenshot](/images/unseenConfusion.png)
 
-So in our case, maybe oversampling isn't the best approach.
+So in our case, even though oversampling helped with the train/test data set, with the larger unseen data it performed much worse. Maybe, in this case, oversampling isn't the best approach.
+
+### Quick looks at KNN vs. SVC scores to verify our selectoin
+
+KNN Scores
+![App Screenshot](/images/knnScores.png)
+
+SVC Scores
+![App Screenshot](/images/svcScores.png)
+
+I think its safe to say even though precision score with SVC for a positive class is 1% more than KNN, the overall F1 score for KNN is higher by 10%. I think KNN is the right choice for this dataset.
+
+### Further Analysis
+
+With KNN being chosen as the model to go with, we can now hand over our model to the subject matter experts to decide the specific around the threshold for the model.
+
+![App Screenshot](/images/knnthresholdScoresScores.png)
+
+As we see here, our precision goes down as our recall gets higher.
+
+![App Screenshot](/images/roc.png)
+
+with the ROC (Receiver Operator Curve) plot we can see the percentage of True Positive and it's correspoding False Positive rates. Are we ok with 80% True Positive but having 10% False Positive or would we rather go for 100% True Positive with around 38% False Positives?
+
+This is something the subject matter expert would have to weigh to see what a good compromise is.
+
+We also take quick look at the ROC curve taking into consideration the different values for n-neighbor. The GridSearchCV cross validation process had comeup with 28 as the ideal value for the model to give the best results.
+We look at a quick comparison at the ROC curves for n-neighbor values of 1, 10, and 28
+
+![App Screenshot](/images/multipleRoc.png)
 
 ### Recommendation
 
-I would select the KNN Classifier because has a lower training time but similar train/test score other classifiers.
+I would select the KNN Classifier because it has a much lower training time but very comparable train/test score compared to other classifiers.
+I would put the decison to tune the classifier to a specifc threshold upon the subject matter expert to come to an agreeable compromise between recall and precision.
